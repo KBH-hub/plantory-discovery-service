@@ -1,11 +1,16 @@
+server:
+  port: 9761
+
 spring:
   application:
     name: plantory-discovery-service
 
-server:
-  port: 9761
-
 eureka:
+  instance:
+    hostname: localhost
   client:
+    # Eureka 서버는 자기 자신을 client로 등록/조회할 필요 없음(단일 서버)
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
